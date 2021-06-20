@@ -1,0 +1,17 @@
+{
+    "port": 5000,
+    "title": "Status Page",
+    "time":"10",
+    "services": [
+        {
+            "name": "example",
+            "ip": "https://example.com",
+            "method": "http"
+        },
+        {
+            "name": "example2",
+            "ip": "example.com",
+            "method": "ping"
+        }
+    ]
+}
