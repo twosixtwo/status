@@ -28,6 +28,7 @@ class status_handler:
     def __init__(self):
         self.html = ""
         self.last_timestamp = datetime.now().timestamp()
+        self.last = ""
         
     def update_html(self, ping):
         with open("index.html", "r") as _index:
@@ -58,6 +59,7 @@ class status_handler:
                 output[server["name"]] = "offline"
         self.last_timestamp = datetime.now().timestamp()
         self.update_html(output)
+        self.last = output
         sleep(int(config["time"]))
         self.routine()
 
@@ -80,6 +82,7 @@ thread.start()
 
 @app.route("/")
 def index():
+    status.update_html(status.last)
     return status.html
 
 if __name__ == "__main__":
