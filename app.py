@@ -66,7 +66,11 @@ class status_handler:
     def ping(self, host):
         param = '-n' if platform.system().lower()=='windows' else '-c'
         command = ['ping', param, '1', host]
-        return subprocess.call(command, stdout=subprocess.DEVNULL) == 0
+        try:
+            return subprocess.call(command, stdout=subprocess.DEVNULL) == 0
+        except:
+            print("Error pinging " + host + " due to an error while running " + ' '.join(command))
+            return False
     
     def http(self, host):
         request = requests.get(host)
